@@ -1,0 +1,102 @@
+package com.example.a31arshdeep;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener, RadioGroup.OnCheckedChangeListener {
+
+    Spinner carSp;
+    TextView capitalTv, areaTV;
+    Button btn;
+    EditText q1;
+    RadioGroup rg;
+    RadioButton rb1, rb2;
+    ImageView flag;
+    String car[] = {"Select Watch", "Guchi", "addidas", "armani", "magnum", "redo"};
+    String capital[] = {"0", "1400", "1200", "999", "1350", "1499", "1800"};
+    String area[] = {"0", "3000", "8943", "6438", "3013", "3791", "3573"};
+    public double x;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        carSp = findViewById(R.id.carsp);
+        btn = findViewById(R.id.btn);
+        flag = findViewById(R.id.flag);
+        capitalTv = findViewById(R.id.capitalTv);
+        areaTV = findViewById(R.id.areaTV);
+        rg = findViewById(R.id.rg);
+        rb1 = findViewById(R.id.rb1);
+        rb2 = findViewById(R.id.rb2);
+        q1 = findViewById(R.id.q1);
+
+        btn.setOnClickListener(this);
+        carSp.setOnItemSelectedListener(this);
+
+        ArrayAdapter aa = new ArrayAdapter(this, android.R.layout.simple_spinner_item, car);
+        //set the array adapter as simple spinner
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Setting the ArrayAdapter data to the Spinner
+        carSp.setAdapter(aa);
+
+
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        int i = carSp.getSelectedItemPosition();
+        capitalTv.setText(capital[i]);
+        String imgName = car[i].toLowerCase();
+        int imgId = getResources().getIdentifier(imgName, "drawable", getPackageName());
+        Toast.makeText(MainActivity.this, "->" + imgId, Toast.LENGTH_SHORT).show();
+        flag.setImageResource(imgId);
+        areaTV.setText(area[i]);
+
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup rg, int j) {
+        String q = capitalTv.getText().toString();
+        int qt = Integer.parseInt(q);
+        double p = Double.parseDouble(q1.getText().toString());
+        switch (j) {
+            case R.id.rb1:
+                double pResult = p * qt;
+                if (pResult < 100) {
+                    x = pResult + (pResult * .10);
+                } else {
+                    x = p * qt;
+                }
+                break;
+            case R.id.rb2:
+                x = p * qt;
+                break;
+        }
+    }
+}
