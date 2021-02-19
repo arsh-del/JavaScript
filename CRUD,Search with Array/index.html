@@ -1,0 +1,61 @@
+<!doctype html>
+<html >
+
+<head>
+
+
+
+
+</head>
+
+<body>
+<h1 align="center">Student Database</h1>
+  <label for="sId">Employer ID:</label>
+  <input type="text" id="sID" name="sID" ><br>
+  <label for="sId">Job Title:</label>
+  <input type="text" id="jbt" name="Job Title" ><br>
+  <label for="fname">First name:</label>
+  <input type="text" id="fname" name="fname" ><br><br>
+  <label for="lname">Last name:</label>
+  <input type="text" id="lname" name="lname" ><br><br>
+  <label for="gpa">Salary:</label>
+  <input type="text" id="gpa" name="gpa" ><br><br>
+
+   <input onclick="addElement()" id="add" type="submit" value="ADD">
+   <input onclick="removeElement()" id="delete" type="submit" value="Delete">
+
+
+  <input onclick="sortsal()" id="sort" type="submit" value="SortbySalary">
+  <input onclick="reverseSort()" id="rSort" type="submit" value="Reverse Salary Sort">
+  <input onclick="lnameass()" id="lnameass" type="submit" value="Ascending">
+  <input onclick="lnamedec()" id="lnamedec" type="submit" value="Decending">
+
+  <input onclick="editemp()" id="edit" type="submit" value="Edit">
+
+
+<br>
+<label for="search">Enter id to search:</label>
+<input type="text" id="searchStudent" name="search" ><br><br>
+<input onclick="search()" id="search" type="submit" value="Search">
+
+<br>
+<label for="search">Enter salary to search:</label>
+<input type="text" id="searchsal" name="search" ><br><br>
+<input onclick="salsearch()" id="search1" type="submit" value="Search by Salary ">
+<input onclick="printtable()" id="Printc" type="submit" value="Print">
+
+
+
+
+</br>
+<p id="gpaa"/>arshdeep</p>
+<table border="1">
+
+  <script src="main.js"></script>
+
+
+</table>
+
+</body>
+
+</html>
