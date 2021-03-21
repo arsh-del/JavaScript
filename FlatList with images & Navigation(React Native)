@@ -1,0 +1,620 @@
+import 'react-native-gesture-handler';
+import { StatusBar } from 'expo-status-bar';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View,ScrollView,SafeAreaView,Button,FlatList,TouchableOpacity,Image } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+
+const HomeScreen =({navigation}) =>{
+
+  const dummyArray = [
+    { id: '1', value: 'Mens Shirt', photo: require("./assets/logosh.png") },
+    { id: '2', value: 'Mens Pant', photo: require("./assets/plogo.png") },
+    { id: '3', value: 'Shoes', photo: require("./assets/shoe.jpg") },
+    { id: '4', value: 'Formal Outfit', photo: require("./assets/tommysuit.jpg") },
+    { id: '5', value: 'Accessories', photo: require("./assets/shades.png")},
+    { id: '6', value: 'Sports', photo: require("./assets/sports.jpg") },
+  ];
+  
+
+    const [listItems, setListItems] = useState(dummyArray);
+  
+    
+    const ItemView = ({ item }) => {
+      return (
+        // Single Comes here which will be repeatative for the FlatListItems
+       <View>
+         <View style={{flexDirection:'row'}}>
+        
+          <Image source={item.photo} style={{height:100, width:100}}/>
+          <Text style={styles.item} onPress={() => getItem(item)}>
+            {item.value}
+          </Text>
+           </View>
+        </View> 
+      );
+    };
+  
+    const ItemSeparatorView = () => {
+      return (
+        //Item Separator
+        <View
+          style={{ height: 1, width: '100%', backgroundColor: 'transparent' }}
+        />
+      );
+    };
+  
+    const getItem = (item) => {
+     
+      //Function for click on an item
+      //alert('Id : ' + item.id + ' Value : ' + item.value);
+      
+      
+    if(item.id==1){
+      navigation.push("Ex");
+    }
+
+    else if(item.id==2){
+      navigation.push("pant");
+    }
+      else if(item.id==3){
+        navigation.push("shoes");
+      }
+      else if(item.id==4){
+        navigation.push("formal");
+      }
+      else if(item.id==5){
+        navigation.push("accesories");
+      }
+      else if(item.id==6){
+        navigation.push("sports");
+      }
+       
+    };
+  
+
+return(
+  <SafeAreaView style={{ flex: 1 }}>
+  <View style={styles.container}>
+  <View >
+    <Text style={styles.ct}>Categories</Text>
+    </View>
+    <FlatList
+      data={listItems}
+      //data defined in constructor
+      ItemSeparatorComponent={ItemSeparatorView}
+      //Item Separator View
+      renderItem={ItemView}
+      keyExtractor={(item, index) => index.toString()}
+    />
+  </View>
+  
+</SafeAreaView>
+
+  );
+};
+
+      //------------------------------------------------------------------------------------------------------Mens Section
+
+  const Exdetails =({navigation}) =>{
+ 
+    const dummyArray = [
+      { id: '1', value: ' Adidas Shirt', photo: require("./assets/adidasshirt.jpg") },
+      { id: '2', value: 'Polo shirt', photo: require("./assets/poloshirt.jpg") },
+      { id: '3', value: 'Tommy shirt', photo: require("./assets/tommyshirt.jpg") },
+      { id: '4', value: 'Guchi shirt', photo: require("./assets/guccishirt.jpg") },
+      { id: '5', value: 'Nike shirt', photo: require("./assets/nikeshirt.jpg")},
+      { id: '6', value: 'wrangler shirt', photo: require("./assets/wranglershirt.jpg") },
+      { id: '7', value: 'H & M shirt', photo: require("./assets/h&mshirt.jpg") },
+    ];
+    
+  
+      const [listItems, setListItems] = useState(dummyArray);
+    
+      
+      const ItemView = ({ item }) => {
+        return (
+          // Single Comes here which will be repeatative for the FlatListItems
+         <View>
+           <View style={{flexDirection:'row'}}>
+          
+            <Image source={item.photo} style={{height:100, width:100}}/>
+            <Text style={styles.item} onPress={() => getItem(item)}>
+              {item.value}
+            </Text>
+             </View>
+          </View> 
+        );
+      };
+    
+      const ItemSeparatorView = () => {
+        return (
+          //Item Separator
+          <View
+            style={{ height: 1, width: '100%', backgroundColor: 'transparent' }}
+          />
+        );
+      };
+    
+      const getItem = (item) => {
+        //Function for click on an item
+        //alert('Id : ' + item.id + ' Value : ' + item.value);
+        
+        navigation.push("placeOrder");
+      };
+    
+  
+  return(
+    <SafeAreaView style={{ flex: 1 }}>
+    <View style={styles.container}>
+    <View >
+      <Text style={styles.ct}>Mens Attire</Text>
+      </View>
+      <FlatList
+        data={listItems}
+        //data defined in constructor
+        ItemSeparatorComponent={ItemSeparatorView}
+        //Item Separator View
+        renderItem={ItemView}
+        keyExtractor={(item, index) => index.toString()}
+      />
+    </View>
+    
+  </SafeAreaView>
+  
+      );
+    };
+   
+           //-------------------------------------------------------------Pant section
+    const Pants =({navigation}) =>{
+ 
+      const dummyArray = [
+        { id: '1', value: 'Gens', photo: require("./assets/logosh.png") },
+        { id: '2', value: 'Levis', photo: require("./assets/levijeans.jpg") },
+        { id: '3', value: 'American Eagle', photo: require("./assets/americanjean.jpg") },
+        { id: '4', value: 'H&M', photo: require("./assets/hmjean.jpg") },
+        { id: '5', value: 'Wrangler', photo: require("./assets/wranglerjeans.jpg")},
+        { id: '6', value: 'Tommy', photo: require("./assets/tommyjeans.jpg") },
+       
+      ];
+      
+    
+        const [listItems, setListItems] = useState(dummyArray);
+      
+        
+        const ItemView = ({ item }) => {
+          return (
+            // Single Comes here which will be repeatative for the FlatListItems
+           <View>
+             <View style={{flexDirection:'row'}}>
+            
+              <Image source={item.photo} style={{height:100, width:100}}/>
+              <Text style={styles.item} onPress={() => getItem(item)}>
+                {item.value}
+              </Text>
+               </View>
+            </View> 
+          );
+        };
+      
+        const ItemSeparatorView = () => {
+          return (
+            //Item Separator
+            <View
+              style={{ height: 1, width: '100%', backgroundColor: 'transparent' }}
+            />
+          );
+        };
+      
+        const getItem = (item) => {
+          //Function for click on an item
+          //alert("Your order is placed succesfully...");
+          navigation.push("placeOrder");
+           
+        };
+      
+    
+    return(
+      <SafeAreaView style={{ flex: 1 }}>
+      <View style={styles.container}>
+      <View >
+        <Text style={styles.ct}>Mens Pants</Text>
+        </View>
+        <FlatList
+          data={listItems}
+          //data defined in constructor
+          ItemSeparatorComponent={ItemSeparatorView}
+          //Item Separator View
+          renderItem={ItemView}
+          keyExtractor={(item, index) => index.toString()}
+        />
+      </View>
+      
+    </SafeAreaView>
+    
+        );
+      };
+
+       //----------------------------------------------------------------------------------------------------------shoes section
+
+       const shoe =({navigation}) =>{
+ 
+        const dummyArray = [
+          { id: '1', value: 'Adidas', photo: require("./assets/adidasshoe.jpg") },
+          { id: '2', value: 'Puma', photo: require("./assets/pumashoe.jpg") },
+          { id: '3', value: 'Jordan', photo: require("./assets/fav.png") },
+          { id: '4', value: 'Rebook', photo: require("./assets/fav.png") },
+          { id: '5', value: 'Kenchi', photo: require("./assets/icon.png")},
+          { id: '6', value: 'Tommy', photo: require("./assets/fav.png") },
+         
+        ];
+        
+      
+          const [listItems, setListItems] = useState(dummyArray);
+        
+          
+          const ItemView = ({ item }) => {
+            return (
+              // Single Comes here which will be repeatative for the FlatListItems
+             <View>
+               <View style={{flexDirection:'row'}}>
+              
+                <Image source={item.photo} style={{height:100, width:100}}/>
+                <Text style={styles.item} onPress={() => getItem(item)}>
+                  {item.value}
+                </Text>
+                 </View>
+              </View> 
+            );
+          };
+        
+          const ItemSeparatorView = () => {
+            return (
+              //Item Separator
+              <View
+                style={{ height: 1, width: '100%', backgroundColor: 'transparent' }}
+              />
+            );
+          };
+        
+          const getItem = (item) => {
+            //Function for click on an item
+            //alert("Your order is placed succesfully...");
+            navigation.push("placeOrder");
+             
+          };
+        
+      
+      return(
+        <SafeAreaView style={{ flex: 1 }}>
+        <View style={styles.container}>
+        <View >
+          <Text style={styles.ct}>Categories</Text>
+          </View>
+          <FlatList
+            data={listItems}
+            //data defined in constructor
+            ItemSeparatorComponent={ItemSeparatorView}
+            //Item Separator View
+            renderItem={ItemView}
+            keyExtractor={(item, index) => index.toString()}
+          />
+        </View>
+        
+      </SafeAreaView>
+      
+          );
+        };
+  
+              //---------------------------------------------------------------------------------------------formal
+              
+       const formal =({navigation}) =>{
+ 
+        const dummyArray = [
+          { id: '1', value: 'Blazer', photo: require("./assets/blazzers.jpg") },
+          { id: '2', value: 'Guchi Suit', photo: require("./assets/blazzers.jpg") },
+          { id: '3', value: 'Armani Suit', photo: require("./assets/armanisuit.jpg") },
+          { id: '4', value: 'papper Suit', photo: require("./assets/armanisuit.jpg") },
+          { id: '5', value: 'Basket', photo: require("./assets/basketsuit.jpg")},
+          { id: '6', value: 'Tommy Suit', photo: require("./assets/suits.jpg") },
+         
+        ];
+        
+      
+          const [listItems, setListItems] = useState(dummyArray);
+        
+          
+          const ItemView = ({ item }) => {
+            return (
+              // Single Comes here which will be repeatative for the FlatListItems
+             <View>
+               <View style={{flexDirection:'row'}}>
+              
+                <Image source={item.photo} style={{height:100, width:100}}/>
+                <Text style={styles.item} onPress={() => getItem(item)}>
+                  {item.value}
+                </Text>
+                 </View>
+              </View> 
+            );
+          };
+        
+          const ItemSeparatorView = () => {
+            return (
+              //Item Separator
+              <View
+                style={{ height: 1, width: '100%', backgroundColor: 'transparent' }}
+              />
+            );
+          };
+        
+          const getItem = (item) => {
+            //Function for click on an item
+            //alert("Your order is placed succesfully...");
+            navigation.push("placeOrder");
+             
+          };
+        
+      
+      return(
+        <SafeAreaView style={{ flex: 1 }}>
+        <View style={styles.container}>
+        <View >
+          <Text style={styles.ct}>Mens Formal</Text>
+          </View>
+          <FlatList
+            data={listItems}
+            //data defined in constructor
+            ItemSeparatorComponent={ItemSeparatorView}
+            //Item Separator View
+            renderItem={ItemView}
+            keyExtractor={(item, index) => index.toString()}
+          />
+        </View>
+        
+      </SafeAreaView>
+      
+          );
+        };
+
+            //---------------------------------------------------------------------------------------------------Accesories
+            
+       const accesories =({navigation}) =>{
+ 
+        const dummyArray = [
+          { id: '1', value: 'Belt', photo: require("./assets/belts.jpg") },
+          { id: '2', value: 'Golden Chain', photo: require("./assets/gchain_.jpg") },
+          { id: '3', value: 'Silver', photo: require("./assets/silverchain.jpg") },
+          { id: '4', value: 'Perfume', photo: require("./assets/perfume.jpg") },
+          { id: '5', value: 'Mens Braclet', photo: require("./assets/braclet.jpg")},
+          { id: '6', value: 'Tommy Wallet', photo: require("./assets/tomyw_.jpg") },
+         
+        ];
+        
+      
+          const [listItems, setListItems] = useState(dummyArray);
+        
+          
+          const ItemView = ({ item }) => {
+            return (
+              // Single Comes here which will be repeatative for the FlatListItems
+             <View>
+               <View style={{flexDirection:'row'}}>
+              
+                <Image source={item.photo} style={{height:100, width:100}}/>
+                <Text style={styles.item} onPress={() => getItem(item)}>
+                  {item.value}
+                </Text>
+                 </View>
+              </View> 
+            );
+          };
+        
+          const ItemSeparatorView = () => {
+            return (
+              //Item Separator
+              <View
+                style={{ height: 1, width: '100%', backgroundColor: 'transparent' }}
+              />
+            );
+          };
+        
+          const getItem = (item) => {
+            //Function for click on an item
+            //alert("Your order is placed succesfully...");
+            navigation.push("placeOrder");
+             
+          };
+        
+      
+      return(
+        <SafeAreaView style={{ flex: 1 }}>
+        <View style={styles.container}>
+        <View >
+          <Text style={styles.ct}>Mens Accesories</Text>
+          </View>
+          <FlatList
+            data={listItems}
+            //data defined in constructor
+            ItemSeparatorComponent={ItemSeparatorView}
+            //Item Separator View
+            renderItem={ItemView}
+            keyExtractor={(item, index) => index.toString()}
+          />
+        </View>
+        
+      </SafeAreaView>
+      
+          );
+        };      
+
+                //-------------------------------------------------------------->>>>--------------------------------------Sports section\
+
+                const sports =({navigation}) =>{
+ 
+                  const dummyArray = [
+                    { id: '1', value: 'Footbal', photo: require("./assets/football dress.jpg") },
+                    { id: '2', value: 'Rugby', photo: require("./assets/rgb.jpg") },
+                    { id: '3', value: 'Basketball', photo: require("./assets/basketballdress.jpg") },
+                    { id: '4', value: 'IceHockey', photo: require("./assets/icehockeydress.jpg") },
+                    { id: '5', value: 'Gym', photo: require("./assets/gym.jpg")},
+                    { id: '6', value: 'Runner', photo: require("./assets/run.jpg") },
+                   
+                  ];
+                  
+                
+                    const [listItems, setListItems] = useState(dummyArray);
+                  
+                    
+                    const ItemView = ({ item }) => {
+                      return (
+                        // Single Comes here which will be repeatative for the FlatListItems
+                       <View>
+                         <View style={{flexDirection:'row'}}>
+                        
+                          <Image source={item.photo} style={{height:100, width:100}}/>
+                          <Text style={styles.item} onPress={() => getItem(item)}>
+                            {item.value}
+                          </Text>
+                           </View>
+                        </View> 
+                      );
+                    };
+                  
+                    const ItemSeparatorView = () => {
+                      return (
+                        //Item Separator
+                        <View
+                          style={{ height: 1, width: '100%', backgroundColor: 'transparent' }}
+                        />
+                      );
+                    };
+                  
+                    const getItem = (item) => {
+                      //Function for click on an item
+                      //alert("Your order is placed succesfully...");
+                      navigation.push("placeOrder");
+                       
+                    };
+                  
+                
+                return(
+                  <SafeAreaView style={{ flex: 1 }}>
+                  <View style={styles.container}>
+                  <View >
+                    <Text style={styles.ct}>Sports Section</Text>
+                    </View>
+                    <FlatList
+                      data={listItems}
+                      //data defined in constructor
+                      ItemSeparatorComponent={ItemSeparatorView}
+                      //Item Separator View
+                      renderItem={ItemView}
+                      keyExtractor={(item, index) => index.toString()}
+                    />
+                  </View>
+                  
+                </SafeAreaView>
+                
+                    );
+                  };      
+
+                //-------------------------------------------------------------------------------------------------Third Page start
+  
+    const placeOrd =({navigation}) =>{
+ 
+      const[people,setPeople]=useState([
+        { name:'Your Order is Place Succesfully', key:'1'},
+        { name:'Delivery method is Cod', key:'2'},
+      
+       ]);
+    
+      return(
+  
+        <View style={{flex:1,alignItem:'center',justifyContent:'center'}}>      
+       <FlatList
+        // numColumns={}
+         keyExtractor={(item)=> item.id}
+         data={people}
+         renderItem={({item})=>(
+           <TouchableOpacity onPress={()=> navigation.navigate("Det")}>
+          <Text style={styles.po}>{item.name}</Text>
+          </TouchableOpacity>
+         )}
+  
+        />
+  
+    
+        </View>
+        );
+      };
+     
+
+        
+const Stack = createStackNavigator();
+
+const App=()=>{
+  return(
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Ex" component={Exdetails} />
+        <Stack.Screen name="pant" component={Pants} />
+        <Stack.Screen name="shoes" component={shoe} />
+        <Stack.Screen name="formal" component={formal} />
+        <Stack.Screen name="accesories" component={accesories} />
+        <Stack.Screen name="sports" component={sports} />
+        <Stack.Screen name="placeOrder" component={placeOrd} />
+       
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
+}
+
+
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    paddingTop:20,
+    paddingHorizontal:20,
+
+    // alignItems: 'center',
+   // justifyContent: 'center',
+  },
+  item:{
+     padding: 10,
+    fontSize: 22,
+    height: 44,
+  },
+  po:{
+    padding: 10,
+   fontSize: 32,
+   height: 44,
+   alignItems: 'center',
+  justifyContent: 'center',
+  paddingLeft: 400,
+ 
+ },
+  ct:{
+    flex:1,
+    fontSize: 25,
+   fontWeight: 'bold',
+  // alignItems:'center',
+ //  justifyContent: 'center',
+   textAlign:'center',
+   padding: 0,
+  //  fontSize: 18,
+ //   height: 44,
+    marginTop:40,
+   marginBottom:20,
+  }
+});
+
+
+
+
+export default App;
